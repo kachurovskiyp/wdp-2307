@@ -27,11 +27,12 @@ class NewFurniture extends React.Component {
   }
 
   render() {
+    const productCount = this.props.role === 'internal' ? 4 : 8;
     const { categories, products } = this.props;
     const { activeCategory, activePage, fadeOut } = this.state;
 
     const categoryProducts = products.filter(item => item.category === activeCategory);
-    const pagesCount = Math.ceil(categoryProducts.length / 8);
+    const pagesCount = Math.ceil(categoryProducts.length / productCount);
 
     const dots = [];
     for (let i = 0; i < pagesCount; i++) {
@@ -88,9 +89,9 @@ class NewFurniture extends React.Component {
             }}
           >
             <div className={`row ${fadeOut ? styles.fade : ''}`}>
-              {categoryProducts.slice(activePage * 8, (activePage + 1) * 8).map(item => (
+              {categoryProducts.slice(activePage * productCount, (activePage + 1) * productCount).map(item => (
                 <div className='col-lg-3 col-sm-6 col-12' key={item.id}>
-                  <ProductBox {...item} />
+                  <ProductBox role={this.props.role} {...item} />
                 </div>
               ))}
             </div>

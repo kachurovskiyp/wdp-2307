@@ -16,8 +16,7 @@ import QuickViewPopup from '../../views/QuickViewPopup/QuickViewPopup';
 import { useDispatch } from 'react-redux';
 import { toggleFavorite } from '../../../redux/productsRedux';
 
-const ProductBox = ({ ...item }) => {
-
+const ProductBox = ({ role, ...item }) => {
   const [isHovering, setIsHovering] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -61,7 +60,7 @@ const ProductBox = ({ ...item }) => {
       {isPopupOpen && <QuickViewPopup id={item.id} onClose={handlePopupClose} />}
       <div className={styles.photo}>
         {item.promo && <div className={styles.sale}>{item.promo}</div>}
-        <img src={item.picture} alt={item.name} />
+        <img src={role === 'internal' ? `../${item.picture}` : item.picture} alt={item.name} />
         {isHovering && (
           <div className={styles.buttons}>
             <Button variant='small' onClick={handleQuickViewClick}>

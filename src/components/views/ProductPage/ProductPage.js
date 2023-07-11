@@ -3,6 +3,7 @@ import React from 'react';
 import styles from './ProductPage.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import NewFurniture from '../../features/NewFurniture/NewFurnitureContainer';
 
 const ProductPage = () => {
   return (
@@ -39,6 +40,7 @@ const ProductPage = () => {
             </div>
           </div>
         </div>
+        <NewFurniture role='internal' />
       </div>
     </div>
   );
